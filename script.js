@@ -18,7 +18,7 @@ window.onload = function () {
 
 //created a dropdown menu with user options. 
 //when a user is selected, the form is displayed, and their data is loaded
-function createDropdown(users) {
+ export function createDropdown(users) {
   const selectElement = document.getElementById("dropdown");
   
   for (let i = 0; i < users.length; i++) {
