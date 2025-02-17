@@ -8,35 +8,86 @@ import { getUserIds, getData, setData, clearData } from "./storage.js";
 
 //retrive user Ids from storage
 const users = getUserIds();
-console.log("users-->",users)
+console.log("users-->", users);
 
 window.onload = function () {
   createDropdown(users);
+  setupDropdownListener();
 };
 
 
 
-//created a dropdown menu with user options. 
-//when a user is selected, the form is displayed, and their data is loaded
- export function createDropdown(users) {
+//created a dropdown menu with user options
+
+export function createDropdown(users) {
   const selectElement = document.getElementById("dropdown");
-  
+
   for (let i = 0; i < users.length; i++) {
     const option = document.createElement("option");
-    const optionId = option.id = i + 1;
-    console.log(`option id for user ${users[i]} is ${optionId}`)
+    const optionValue = users[i]; //we can retrieve the correct user ID
+    console.log("option value-->", optionValue);
     option.textContent = `User ${users[i]}`;
     selectElement.appendChild(option);
   }
 
-  console.log(selectElement)
-
-  // event listener for dropdown selection
-  selectElement.addEventListener("change", ()=>{
-    //need function for form
-    console.log("clicekd on user")
-  } )
-
+  console.log(selectElement);
 }
 
+// event listener for dropdown selection
+function setupDropdownListener() {
+  const selectElement = document.getElementById("dropdown");
 
+  selectElement.addEventListener("change", () => {
+    const selectedUser = selectElement.value;
+    console.log("selected user-->", selectedUser);
+    if (selectedUser) {
+      displayBookmarks(selectedUser);
+    }
+  });
+}
+
+function displayBookmarks(userId) {
+  let bookmarks = getData(userId); //fetch the array of bookmarks for the selected user
+  console.log("bookmarks type-->", typeof bookmarks);
+  console.log(`bookmarks for ${userId}-->`, bookmarks);
+  //select the bookmark container
+  const bookmarksContainer = document.getElementById("bookmarks-container");
+  bookmarksContainer.textContent = ""; //clear previous bookmarks
+  //check if bookmarks exist
+  if ( !bookmarks  || bookmarks.length === 0) {
+    bookmarksContainer.textContent = `No bookmarks available for ${userId}`;
+    return;
+  }
+  //sort bookmarks in reverse chronological order. Bookmarks should be displayed newest first
+  //if each bookmark object has a createdAt timestamp, use sort()
+  bookmarks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  //loop through bookmarks and create elements
+  bookmarks.forEach((bookmark) => {
+    //create a div for each element
+    const bookmarkDiv = document.createElement("div");
+    //create a title(clickable link)
+    const titleLink = document.createElement("a");
+    titleLink.href = bookmark.url;
+    titleLink.textContent = bookmark.title;
+    titleLink.target = "_blank"; //opem in new tab
+
+    //create p for description
+    const descriptionPara = document.createElement("p");
+    descriptionPara.textContent = bookmark.description;
+
+    //create timestamp
+    const timestamp = document.createElement("small");
+    timestamp.textContent = `Created at: ${new Date(bookmark.createdAt).toLocaleString()}`
+
+    //append elemnts to bookmark div
+    bookmarkDiv.appendChild(titleLink);
+    bookmarkDiv.appendChild(descriptionPara);
+    bookmarkDiv.appendChild(timestamp);
+
+    //append bookmark div to the container
+    bookmarksContainer.appendChild(bookmarkDiv);
+  });
+
+  console.log("bookmarks-->", bookmarks);
+}
