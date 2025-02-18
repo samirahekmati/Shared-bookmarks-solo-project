@@ -13,17 +13,23 @@
     </div>
 
     <!-- Create form -->
-    <div id="form-container"></div>
-    <form id="bookmark-form">
-      <label for="form-title">Enter title:</label>
-      <input type="text" id="form-title" name="form-title" required>
-      <label for="form-description">Enter description:</label>
-      <input type="text" id="form-description" name="form-description" required>
-      <label for="form-link">Enter link:</label>
-      <input type="url" id="form-link" name="form-link" required>
-      <button type="button" id="form-button">Submit</button>
-    </form>
+    <div id="form-container">
+      <form id="bookmark-form">
+        <label for="form-title">Enter title:</label>
+        <input type="text" id="form-title" name="form-title" placeholder="Bookmark Title" required>
 
+        <label for="form-description">Enter description:</label>
+        <textarea id="form-description" name="form-description" placeholder="Short description" required></textarea>
+
+        <label for="form-link">Enter link:</label>
+        <input type="url" id="form-link" name="form-link" placeholder="https://example.com" required>
+
+        <button type="submit" id="form-submit-button">Submit</button>
+      </form>
+    </div>
+    
+
+    <!-- Create bookmarks container  -->
     <div id="bookmarks-container"></div>
   </body>
 </html>
