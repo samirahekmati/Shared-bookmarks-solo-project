@@ -15,8 +15,6 @@ window.onload = function () {
   setupDropdownListener();
 };
 
-
-
 //created a dropdown menu with user options
 
 export function createDropdown(users) {
@@ -54,7 +52,7 @@ function displayBookmarks(userId) {
   const bookmarksContainer = document.getElementById("bookmarks-container");
   bookmarksContainer.textContent = ""; //clear previous bookmarks
   //check if bookmarks exist
-  if ( !bookmarks  || bookmarks.length === 0) {
+  if (!bookmarks || bookmarks.length === 0) {
     bookmarksContainer.textContent = `No bookmarks available for ${userId}`;
     return;
   }
@@ -78,7 +76,9 @@ function displayBookmarks(userId) {
 
     //create timestamp
     const timestamp = document.createElement("small");
-    timestamp.textContent = `Created at: ${new Date(bookmark.createdAt).toLocaleString()}`
+    timestamp.textContent = `Created at: ${new Date(
+      bookmark.createdAt
+    ).toLocaleString()}`;
 
     //append elemnts to bookmark div
     bookmarkDiv.appendChild(titleLink);
@@ -90,4 +90,51 @@ function displayBookmarks(userId) {
   });
 
   console.log("bookmarks-->", bookmarks);
+}
+
+//Select Form Elements
+const form = document.getElementById("bookmark-form");
+const inputTitle = document.getElementById("form-title");
+const inputDescription = document.getElementById("form-description");
+const inputLink = document.getElementById("form-link");
+
+//const submitButton = document.getElementById("form-submit-button");
+
+//Attach an Event Listener to the Form
+form.addEventListener("submit", function (event) {
+  event.preventDefault(); //to prevent page reload
+  //get the selected user
+  const selectElement = document.getElementById("dropdown");
+  const selectedUser = selectElement.value;
+  console.log(selectedUser);
+
+  if (!selectedUser) {
+    alert("Please select a user.");
+    return;
+  }
+
+  //create a bookmark object with a timestamp
+  const newBookmark = {
+    title: inputTitle.value,
+    description: inputDescription.value,
+    url: inputLink.value,
+    createdAt: new Date().toISOString(), // Store timestamp
+  };
+
+
+
+  addBookmark(selectedUser,newBookmark)
+});
+
+function addBookmark(selectedUser, newBookmark){
+  let bookmarks = getData(selectedUser) || [];
+
+  //add the new bookmark to the array
+  bookmarks.push(newBookmark);
+
+  //store the updated bookmarks back to the local storage
+  setData(selectedUser, bookmarks);
+
+  //refsh the display bookmarks
+  displayBookmarks(selectedUser)
 }
