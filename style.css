@@ -1,48 +1,59 @@
 body{
+    font-family: Arial, Helvetica, sans-serif;
     width: 50%;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    padding-top: 10rem;
+    padding-top: 5rem;
     background-color: #EDE6F2;
+    font-size: 18px;
 
 }
 
 #dropdown-container{
     
     margin-bottom: 2rem;
-    font-size: 20px;
+    
     display: flex;
     flex-direction: column;
     background-color: #f8f9fa;
     border-radius: 5px;
+    padding: 10px;
 }
 
 select{
-    font-size: 15px ;
-    border: none;
+    border:solid 1px #EDE7F2;
     width: 50%;
     margin-bottom: 1rem;
+    padding: 5px;
+    text-align: center;
+    font-size: 15px;
+    color: #757575;
 }
 #bookmark-form {
     display: flex;
     flex-direction: column;
-    font-size: 20px;
     padding-left: 10px;
     background-color: #f8f9fa;
     
 }
  
+label {
+    margin-bottom: 5px;
+}
 input, textarea{
     width: 50%;
     border: none;
+    border:solid 1px #EDE7F2;
+    padding: 5px;
+    font-size: 15px;
+    margin-bottom: 40px;
 }
 textarea{
     height: 12vh;
 }
 #bookmarks-container{
     margin-top: 2rem;
-    font-size: 20px;
     
 }
 
