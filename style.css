@@ -1,0 +1,64 @@
+body{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding-top: 10rem;
+    background-color: #EDE6F2;
+
+}
+
+#dropdown-container{
+    
+    margin-bottom: 2rem;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+select{
+    font-size: 15px ;
+    border: none;
+    width: 50%;
+    margin-bottom: 1rem;
+}
+#bookmark-form {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    padding-left: 10px;
+    background-color: #f8f9fa;
+    
+}
+ 
+input, textarea{
+    width: 50%;
+    border: none;
+}
+textarea{
+    height: 12vh;
+}
+#bookmarks-container{
+    margin-top: 2rem;
+    font-size: 20px;
+    
+}
+
+#form-submit-button{
+    width: 25%;
+    margin: 1rem auto;
+    padding: 0.5rem 0;
+    border: none;
+    box-shadow: 3px 2px 2px rgb(134, 103, 103);
+   font-size: 15px;
+   background-color: rgb(19, 159, 19);
+}
+
+[id^="bookmark-"] {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
