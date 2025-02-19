@@ -6,25 +6,24 @@
 
 import { getUserIds, getData, setData, clearData } from "./storage.js";
 
-//retrive user Ids from storage
-const users = getUserIds();
-console.log("users-->", users);
 
 window.onload = function () {
-  createDropdown(users);
+  createDropdown(userIds);
   setupDropdownListener();
 };
 
+//retrive user Ids from storage
+const userIds = getUserIds();
+console.log("users IDs-->", userIds);
+
 //created a dropdown menu with user options
 
-export function createDropdown(users) {
+export function createDropdown(userIds) {
   const selectElement = document.getElementById("dropdown");
 
-  for (let i = 0; i < users.length; i++) {
+  for (let i = 0; i < userIds.length; i++) {
     const option = document.createElement("option");
-    const optionValue = users[i]; //we can retrieve the correct user ID
-    console.log("option value-->", optionValue);
-    option.textContent = `User ${users[i]}`;
+    option.textContent = `User ${userIds[i]}`;
     selectElement.appendChild(option);
   }
 
@@ -46,7 +45,6 @@ function setupDropdownListener() {
 
 function displayBookmarks(userId) {
   let bookmarks = getData(userId); //fetch the array of bookmarks for the selected user
-  console.log("bookmarks type-->", typeof bookmarks);
   console.log(`bookmarks for ${userId}-->`, bookmarks);
   //select the bookmark container
   const bookmarksContainer = document.getElementById("bookmarks-container");
@@ -61,9 +59,10 @@ function displayBookmarks(userId) {
   bookmarks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   //loop through bookmarks and create elements
-  bookmarks.forEach((bookmark) => {
+  bookmarks.forEach((bookmark, index) => {
     //create a div for each element
     const bookmarkDiv = document.createElement("div");
+    bookmarkDiv.id = `bookmark-${index}`; // Unique Id for each bookmark for styling purposes
     //create a title(clickable link)
     const titleLink = document.createElement("a");
     titleLink.href = bookmark.url;
@@ -126,15 +125,15 @@ form.addEventListener("submit", function (event) {
   addBookmark(selectedUser,newBookmark)
 });
 
-function addBookmark(selectedUser, newBookmark){
-  let bookmarks = getData(selectedUser) || [];
+function addBookmark(userId, bookmark){
+  let bookmarks = getData(userId) || [];
 
   //add the new bookmark to the array
-  bookmarks.push(newBookmark);
+  bookmarks.push(bookmark);
 
   //store the updated bookmarks back to the local storage
-  setData(selectedUser, bookmarks);
+  setData(userId, bookmarks);
 
   //refsh the display bookmarks
-  displayBookmarks(selectedUser)
+  displayBookmarks(userId)
 }
