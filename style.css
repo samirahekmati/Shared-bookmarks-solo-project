@@ -1,75 +1,71 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    padding-top: 5rem;
-    background-color: #EDE6F2;
-    font-size: 18px;
-
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-top: 1rem;
+  background-color: #ede6f2;
+  font-size: 18px;
 }
 
-#dropdown-container{
-    
-    margin-bottom: 2rem;
-    
-    display: flex;
-    flex-direction: column;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    padding: 10px;
+#dropdown-container {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 10px;
 }
 
-select{
-    border:solid 1px #EDE7F2;
-    width: 50%;
-    margin-bottom: 1rem;
-    padding: 5px;
-    text-align: center;
-    font-size: 15px;
-    color: #757575;
+select {
+  border: solid 1px #ede7f2;
+  width: 50%;
+  margin-bottom: 1rem;
+  padding: 5px;
+  text-align: center;
+  font-size: 15px;
+  color: #757575;
 }
 #bookmark-form {
-    display: flex;
-    flex-direction: column;
-    padding-left: 10px;
-    background-color: #f8f9fa;
-    
-}
- 
-label {
-    margin-bottom: 5px;
-}
-input, textarea{
-    width: 50%;
-    border: none;
-    border:solid 1px #EDE7F2;
-    padding: 5px;
-    font-size: 15px;
-    margin-bottom: 40px;
-}
-textarea{
-    height: 12vh;
-}
-#bookmarks-container{
-    margin-top: 2rem;
-    
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  background-color: #f8f9fa;
 }
 
-#form-submit-button{
-    width: 25%;
-    margin: 1rem auto;
-    padding: 0.5rem 0;
-    border: none;
-    box-shadow: 3px 2px 2px rgb(134, 103, 103);
-   font-size: 15px;
-   background-color: rgb(19, 159, 19);
+label {
+  margin-bottom: 5px;
+}
+input,
+textarea {
+  width: 50%;
+  border: none;
+  border: solid 1px #ede7f2;
+  padding: 5px;
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+textarea {
+  height: 12vh;
+}
+#bookmarks-container {
+  margin-top: 2rem;
+}
+
+#form-submit-button {
+  width: 25%;
+  margin: 1rem auto;
+  padding: 0.5rem 0;
+  border: none;
+  box-shadow: 3px 2px 2px rgb(134, 103, 103);
+  font-size: 15px;
+  background-color: rgb(19, 159, 19);
 }
 
 [id^="bookmark-"] {
-    background-color: #f8f9fa;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
