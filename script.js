@@ -1,11 +1,4 @@
-// This is a placeholder file which shows how you can access functions defined in other files.
-// It can be loaded into index.html.
-// You can delete the contents of the file once you have understood how it works.
-// Note that when running locally, in order to open a web page which uses modules, you must serve the directory over HTTP e.g. with https://www.npmjs.com/package/http-server
-// You can't open the index.html file using a file:// URL.
-
 import { getUserIds, getData, setData, clearData } from "./storage.js";
-
 
 window.onload = function () {
   createDropdown(userIds);
@@ -97,8 +90,6 @@ const inputTitle = document.getElementById("form-title");
 const inputDescription = document.getElementById("form-description");
 const inputLink = document.getElementById("form-link");
 
-//const submitButton = document.getElementById("form-submit-button");
-
 //Attach an Event Listener to the Form
 form.addEventListener("submit", function (event) {
   event.preventDefault(); //to prevent page reload
@@ -120,12 +111,10 @@ form.addEventListener("submit", function (event) {
     createdAt: new Date().toISOString(), // Store timestamp
   };
 
-
-
-  addBookmark(selectedUser,newBookmark)
+  addBookmark(selectedUser, newBookmark);
 });
 
-function addBookmark(userId, bookmark){
+function addBookmark(userId, bookmark) {
   let bookmarks = getData(userId) || [];
 
   //add the new bookmark to the array
@@ -135,5 +124,5 @@ function addBookmark(userId, bookmark){
   setData(userId, bookmarks);
 
   //refsh the display bookmarks
-  displayBookmarks(userId)
+  displayBookmarks(userId);
 }
