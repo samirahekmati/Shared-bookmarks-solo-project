@@ -1,4 +1,5 @@
 import { getUserIds, getData, setData, clearData } from "./storage.js";
+import { sortBookmarks } from "./utils.js";
 
 window.onload = function () {
   createDropdown(userIds);
@@ -10,8 +11,7 @@ const userIds = getUserIds();
 console.log("users IDs-->", userIds);
 
 //created a dropdown menu with user options
-
-export function createDropdown(userIds) {
+function createDropdown(userIds) {
   const selectElement = document.getElementById("dropdown");
 
   for (let i = 0; i < userIds.length; i++) {
@@ -47,9 +47,9 @@ function displayBookmarks(userId) {
     bookmarksContainer.textContent = `No bookmarks available for ${userId}`;
     return;
   }
-  //sort bookmarks in reverse chronological order. Bookmarks should be displayed newest first
-  //if each bookmark object has a createdAt timestamp, use sort()
-  bookmarks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  //// **Sort bookmarks in reverse chronological order before displaying**
+  // Bookmarks should be displayed newest first
+  bookmarks = sortBookmarks(bookmarks);
 
   //loop through bookmarks and create elements
   bookmarks.forEach((bookmark, index) => {
@@ -112,6 +112,8 @@ form.addEventListener("submit", function (event) {
   };
 
   addBookmark(selectedUser, newBookmark);
+
+  displayBookmarks(selectedUser);
 });
 
 function addBookmark(userId, bookmark) {
